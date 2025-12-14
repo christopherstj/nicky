@@ -1,0 +1,129 @@
+{
+  "projects": [
+    {
+      "id": "sovereign-syndicate",
+      "title": "Sovereign Syndicate",
+      "role": "Narrative Director",
+      "studio": "Crimson Herring Studios",
+      "year": "2024",
+      "summary": "A Disco Elysium-inspired Victorian steampunk RPG. Hired as Lead Writer, promoted to Narrative Director after securing Canada Media Fund grant. Responsible for branching dialogue across four playable characters, questlines, and overall narrative cohesion.",
+      "heroImage": "/SovereignSyndicate/TitleCards/SS_MainCapsule.png",
+      "highlights": [
+        "Drafted story outline with Game Producer and Creative Director",
+        "Period-specific research for Victorian London setting",
+        "Created development documents for NPCs, locations, and quests",
+        "Vetted hiring and managed junior writers",
+        "Tested and integrated dialogue within Unity"
+      ],
+      "excerpts": ["ss-overview"],
+      "dialogueScenes": ["silver-coin", "bone-mill"],
+      "workflowImages": [],
+      "galleryImages": [
+        {
+          "src": "/SovereignSyndicate/LoadScreens/MANOR INT LOAD SCREEN.jpg",
+          "alt": "Manor Interior - Victorian estate setting"
+        },
+        {
+          "src": "/SovereignSyndicate/LoadScreens/TAVERN LOAD SCREEN.jpg",
+          "alt": "Tavern - Social hub location"
+        },
+        {
+          "src": "/SovereignSyndicate/Mockups/Storyboarding.png",
+          "alt": "Early storyboarding process"
+        }
+      ]
+    },
+    {
+      "id": "studio-delirium",
+      "title": "Studio Delirium",
+      "role": "Narrative Director",
+      "studio": "Crimson Herring Studios / Zugalu Entertainment",
+      "year": "In Development",
+      "summary": "As the existing Narrative Director at Crimson Herring, introduced to this project by our game producer. Responsible for narrative design, quest architecture, and managing junior writers while building the playable golden path.",
+      "heroImage": "/StudioDelirium/Mockups/Mock Up - Rough.png",
+      "highlights": [
+        "Improved existing Game Design Documents with Game Director",
+        "Met with real industry members who inspired NPCs",
+        "Planned quests, inventory items, and interactions",
+        "Wrote branching dialogue and reviewed junior writer deliveries",
+        "Built first-pass playable 'Golden Path' in Unity"
+      ],
+      "excerpts": ["sd-overview"],
+      "dialogueScenes": [],
+      "workflowImages": [
+        {
+          "src": "/StudioDelirium/DialogWorkflows/BroadView.png",
+          "alt": "Broad conversation view",
+          "description": "A wide view of a conversation where the player attends a board meeting. It is too long to be displayed fully on one screen."
+        },
+        {
+          "src": "/StudioDelirium/DialogWorkflows/Hub.png",
+          "alt": "Player trait choices hub",
+          "description": "This hub deals with choices tied to the game system of player traits."
+        },
+        {
+          "src": "/StudioDelirium/DialogWorkflows/QuestProgression.png",
+          "alt": "Quest progression nodes",
+          "description": "The purple nodes are dependent on player Quest Progression."
+        },
+        {
+          "src": "/StudioDelirium/DialogWorkflows/VarietyOfChoices.png",
+          "alt": "Branching choice variety",
+          "description": "A variety of choices and results near the end of the conversation."
+        },
+        {
+          "src": "/StudioDelirium/DialogWorkflows/VariableLogic.png",
+          "alt": "Variable logic nodes",
+          "description": "Nodes containing variable logic determine the conversation's possible outcomes."
+        }
+      ],
+      "galleryImages": [
+        {
+          "src": "/StudioDelirium/QuestDesign/QuestEntity.png",
+          "alt": "Quest Entity in Articy",
+          "description": "Quest Entity where all valid information for a Quest is stored in Articy."
+        },
+        {
+          "src": "/StudioDelirium/QuestDesign/QuestEntries.png",
+          "alt": "Quest Entries organization",
+          "description": "Quest entries organized for display in the game's UI."
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Articy:Draft X",
+      "description": "Dialogue trees, quest design, variable logic, branching narratives"
+    },
+    {
+      "name": "Unity & GitHub",
+      "description": "Gameplay testing, dialogue integration, version control"
+    },
+    {
+      "name": "Figma & Celtx",
+      "description": "Visual workflows, screenplay writing, storyboarding"
+    },
+    {
+      "name": "World Building",
+      "description": "Setting design, lore development, period research"
+    },
+    {
+      "name": "Quest Design",
+      "description": "Mission architecture, player choice, consequence systems"
+    },
+    {
+      "name": "Team Leadership",
+      "description": "Onboarding writers, pipeline management, code reviews"
+    },
+    {
+      "name": "Character Design",
+      "description": "Character bibles, dialogue voice, arc development"
+    },
+    {
+      "name": "Documentation",
+      "description": "GDDs, narrative specs, technical writing"
+    }
+  ]
+}
+

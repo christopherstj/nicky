@@ -1,0 +1,23 @@
+{
+    "StudioDelirium": {
+        "DialogWorkflows": {
+            "BroadView": "A wide view of a conversation where the player attends a board meeting. It is too long to be displayed fully on one screen.",
+            "Hub": "This hub deals with choices tied to the game system of player traits.",
+            "QuestProgression": "The purple nodes are dependent on player Quest Progression.",
+            "VarietyOfChoices": "A variety of choices and results near the end of the conversation.",
+            "VariableLogic": "Nodes containing variable logic determine the conversation's possible outcomes."
+        },
+        "Mockups": {
+            "Rough": "Crimson Herring Studios/Zugalu Entertainment-Studio Delirium, Narrative Director.As the existing Narrative Director at Crimson Herring, I was introduced to the project by our game producer.----Design:Worked with the Game Director and Producer to improve existing Game Design DocumentsMeetings with real life members of the industry (who some of the NPCs are based on)Met with the Game Director to plan narrative workPlanned Quests, Inventory Items and InteractionsReviewed and revised deliveries from junior writersWriting:Wrote branching dialogueReviewed and revised deliveries from junior writersTested dialogue and gameplay within Unity, hooked up dialogues to Game ObjectsResponsible for a first-pass of playable 'Golden Path' within Unity"
+        },
+        "QuestDesign": {
+            "QuestEntity": "This is a Quest Entity where all valid information for a Quest is stored in Articy.",
+            "QuestEntries": "The rest of the entries for the Quest are organized here. A writer's edits to these are displayed to the player in the game's UI."
+        }
+    },
+    "SovereignSyndicate": {
+        "TitleCards": {
+            "<any of them>": "Crimson Herring Studios-Sovereign Syndicate-Steam Page.Narrative Director.I was hired as the Lead Writer for this Disco Elysium-inspired RPG. As we gained funding including a large grant from the Canada Media Fund, I moved to Montreal to become the Narrative Director.----Design:Drafted the story outline and worked with our Game Producer and Creative Director to bring the storyline to fruitionPeriod-specific researchCreated development documents for NPCs, locations and questsVetted the hiring of junior writersMet bi-weekly with the Narrative Team to keep track of narrative workReviewed and revised deliveries from junior writersWriting:Responsible for branching dialogue for all four playable characters, questlines and overall narrative cohesionTested dialogue and gameplay within Unity, hooked up dialogues to Game ObjectsQA and bug testing for the game overall"
+        }
+    }
+}
