@@ -35,12 +35,12 @@ export default function ProjectCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="glass border-white/5 bg-transparent rounded-3xl relative overflow-hidden"
+      className="glass border-border/50 bg-transparent rounded-3xl relative overflow-hidden"
     >
       <div className="absolute inset-0 opacity-10 bg-gradient-to-br from-primary/40 via-transparent to-transparent pointer-events-none" />
       
       <CardHeader className="space-y-1 pb-2">
-        <p className="text-xs uppercase tracking-[0.3em] text-primary/80 mb-2">
+        <p className="text-xs tracking-[0.22em] text-primary/80 font-semibold mb-2">
           {accent}
         </p>
         <div className="flex flex-col sm:flex-row sm:items-baseline sm:gap-4">

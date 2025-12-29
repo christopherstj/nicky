@@ -28,10 +28,10 @@ export default function DialoguePlayer({ title, description, lines }: Props) {
   const atEnd = index >= lines.length - 1;
 
   return (
-    <Card className="glass border-white/5 bg-transparent rounded-3xl">
+    <Card className="glass border-border/50 bg-transparent rounded-3xl">
       <CardHeader className="flex flex-row items-start justify-between gap-3 space-y-0 pb-6">
         <div className="space-y-1">
-          <p className="text-xs uppercase tracking-[0.3em] text-primary/80">
+          <p className="text-xs tracking-[0.22em] text-primary/80 font-semibold">
             Interactive Script
           </p>
           <CardTitle className="text-2xl font-black">{title}</CardTitle>
@@ -45,7 +45,7 @@ export default function DialoguePlayer({ title, description, lines }: Props) {
       </CardHeader>
       
       <CardContent>
-        <div className="relative overflow-hidden rounded-2xl border border-white/5 bg-surface p-6 min-h-[160px] flex flex-col justify-center">
+        <div className="relative overflow-hidden rounded-2xl border border-border/50 bg-surface p-6 min-h-[160px] flex flex-col justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={`${current.speaker}-${index}`}
@@ -55,7 +55,7 @@ export default function DialoguePlayer({ title, description, lines }: Props) {
               transition={{ duration: 0.3 }}
               className="space-y-3"
             >
-              <p className="text-xs uppercase tracking-[0.3em] text-primary/80">
+              <p className="text-xs tracking-[0.22em] text-primary/80 font-semibold">
                 {current.speaker}
               </p>
               <p className="text-lg leading-relaxed text-foreground/90">
@@ -69,7 +69,7 @@ export default function DialoguePlayer({ title, description, lines }: Props) {
       <CardFooter className="flex gap-3">
         <Button
           variant="outline"
-          className="rounded-full border-white/10 hover:border-primary/60 hover:text-primary hover:bg-transparent"
+          className="rounded-full border-border hover:border-primary/60 hover:text-primary hover:bg-transparent"
           onClick={() => setIndex((i) => Math.max(i - 1, 0))}
           disabled={index === 0}
         >

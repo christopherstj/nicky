@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Expand, X } from "lucide-react";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 type Props = {
@@ -24,10 +23,20 @@ export default function AnnotatedImage({
 
   return (
     <>
-      <Card
-        className={`group relative overflow-hidden border-white/5 bg-surface/50 cursor-pointer transition-all hover:border-primary/30 ${
-          compact ? "rounded-xl" : "rounded-2xl"
-        }`}
+      <div
+        className="group relative overflow-hidden cursor-pointer transition-all"
+        style={{
+          background: `linear-gradient(
+            145deg,
+            #d4c4a8 0%,
+            #c4b498 50%,
+            #b4a488 100%
+          )`,
+          boxShadow: `
+            2px 3px 8px rgba(0, 0, 0, 0.25),
+            4px 6px 16px rgba(0, 0, 0, 0.15)
+          `,
+        }}
         onClick={() => setIsExpanded(true)}
       >
         <div
@@ -38,20 +47,30 @@ export default function AnnotatedImage({
             alt={alt}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
+            style={{ filter: "sepia(10%) contrast(95%)" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          {/* Darker overlay on hover */}
+          <div 
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
+            style={{
+              background: "linear-gradient(to top, rgba(26,20,16,0.8) 0%, rgba(26,20,16,0.2) 50%, transparent 100%)",
+            }}
+          />
 
           {/* Expand icon */}
           <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-            <div className="bg-background/80 backdrop-blur-sm rounded-full p-2">
-              <Expand className="w-4 h-4 text-foreground" />
+            <div 
+              className="backdrop-blur-sm rounded-full p-2"
+              style={{ background: "rgba(232,220,200,0.9)" }}
+            >
+              <Expand className="w-4 h-4" style={{ color: "#1a1410" }} />
             </div>
           </div>
 
           {/* Description overlay */}
           {description && (
             <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-              <p className="text-sm text-foreground/90 line-clamp-2">
+              <p className="text-sm line-clamp-2" style={{ color: "#e8dcc8" }}>
                 {description}
               </p>
             </div>
@@ -61,14 +80,13 @@ export default function AnnotatedImage({
         {/* Alt text label */}
         <div className={`p-3 ${compact ? "py-2" : ""}`}>
           <p
-            className={`text-muted-foreground line-clamp-1 ${
-              compact ? "text-xs" : "text-sm"
-            }`}
+            className={`line-clamp-1 ${compact ? "text-xs" : "text-sm"}`}
+            style={{ color: "#5a4a3a" }}
           >
             {alt}
           </p>
         </div>
-      </Card>
+      </div>
 
       {/* Lightbox Modal */}
       <AnimatePresence>
@@ -77,7 +95,8 @@ export default function AnnotatedImage({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/95 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ background: "rgba(26, 19, 16, 0.95)" }}
             onClick={() => setIsExpanded(false)}
           >
             <motion.div
@@ -92,20 +111,32 @@ export default function AnnotatedImage({
               <Button
                 variant="ghost"
                 size="icon"
-                className="absolute -top-12 right-0 text-muted-foreground hover:text-foreground"
+                className="absolute -top-12 right-0 hover:bg-transparent"
+                style={{ color: "#c4b498" }}
                 onClick={() => setIsExpanded(false)}
               >
                 <X className="w-6 h-6" />
               </Button>
 
-              {/* Image container */}
-              <div className="relative w-full h-auto rounded-2xl overflow-hidden border border-white/10 bg-surface">
+              {/* Image container - paper style */}
+              <div 
+                className="relative w-full h-auto overflow-hidden"
+                style={{
+                  background: "#d4c4a8",
+                  padding: "12px",
+                  boxShadow: `
+                    4px 6px 20px rgba(0, 0, 0, 0.4),
+                    8px 12px 40px rgba(0, 0, 0, 0.3)
+                  `,
+                }}
+              >
                 <Image
                   src={src}
                   alt={alt}
                   width={1920}
                   height={1080}
                   className="w-full h-auto object-contain max-h-[70vh]"
+                  style={{ filter: "sepia(5%) contrast(98%)" }}
                 />
               </div>
 
@@ -115,12 +146,16 @@ export default function AnnotatedImage({
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="mt-4 p-4 rounded-xl bg-surface/50 border border-white/5"
+                  className="mt-4 p-4"
+                  style={{
+                    background: "rgba(212, 196, 168, 0.1)",
+                    border: "1px solid rgba(212, 196, 168, 0.2)",
+                  }}
                 >
-                  <p className="text-sm font-medium text-foreground mb-1">
+                  <p className="text-sm font-display font-medium mb-1" style={{ color: "#e8dcc8" }}>
                     {alt}
                   </p>
-                  <p className="text-sm text-muted-foreground">{description}</p>
+                  <p className="text-sm" style={{ color: "#c4b498" }}>{description}</p>
                 </motion.div>
               )}
             </motion.div>
@@ -130,4 +165,3 @@ export default function AnnotatedImage({
     </>
   );
 }
-

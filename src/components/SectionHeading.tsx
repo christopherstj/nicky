@@ -8,7 +8,7 @@ export default function SectionHeading({ eyebrow, title, kicker }: Props) {
   return (
     <div className="mb-8 space-y-2">
       {eyebrow ? (
-        <p className="text-sm uppercase tracking-[0.3em] text-primary/80">
+        <p className="text-sm tracking-[0.22em] text-primary/80 font-semibold">
           {eyebrow}
         </p>
       ) : null}

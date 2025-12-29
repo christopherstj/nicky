@@ -1,87 +1,116 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+  /* Sticky TopNav offset */
+  scroll-padding-top: 5.5rem;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 :root {
-  /* Gothic Theme Colors */
-  --background: #0a0a0f;
-  --foreground: #f5f1eb;
+  /* Mysterious Scholar's Desk - Dark, candlelit Victorian aesthetic */
   
-  --card: #121018;
-  --card-foreground: #f5f1eb;
+  /* Desk surface - darker, more shadowy */
+  --background: #1a1310;
+  --foreground: #1a1410;
   
-  --popover: #121018;
-  --popover-foreground: #f5f1eb;
+  /* Paper/parchment - aged, yellowed */
+  --card: #e8dcc8;
+  --card-foreground: #1a1410;
   
-  --primary: #b3112b;
-  --primary-foreground: #f5f1eb;
+  --popover: #e8dcc8;
+  --popover-foreground: #1a1410;
   
-  --secondary: #1f1a26;
-  --secondary-foreground: #f5f1eb;
+  /* Blood red ink for emphasis */
+  --primary: #8b2500;
+  --primary-foreground: #e8dcc8;
   
-  --muted: #121018;
-  --muted-foreground: #a39ba8;
+  /* Darker aged paper */
+  --secondary: #d4c4a8;
+  --secondary-foreground: #1a1410;
   
-  --accent: #1f1a26;
-  --accent-foreground: #f5f1eb;
+  /* Muted tones */
+  --muted: #c4b498;
+  --muted-foreground: #5a4a3a;
   
-  --destructive: #7f1d1d;
-  --destructive-foreground: #f5f1eb;
+  /* Deep crimson accents */
+  --accent: #6b1a00;
+  --accent-foreground: #e8dcc8;
+  
+  --destructive: #6b1a00;
+  --destructive-foreground: #e8dcc8;
 
-  --border: #1f1a26;
-  --input: #1f1a26;
-  --ring: #ff2c4b;
+  /* Darker borders */
+  --border: #a89878;
+  --input: #d4c4a8;
+  --ring: #8b2500;
   
-  --radius: 0.5rem;
+  --radius: 0.125rem;
   
-  /* Custom variables preserved */
-  --surface: #121018;
-  --glow: #ff2c4b;
+  /* Custom Mysterious Desk variables */
+  --desk: #1a1310; /* Very dark wood */
+  --desk-mid: #2a1d14; /* Mid-tone wood */
+  --desk-light: #3d2b1f; /* Lighter wood grain */
+  --paper: #e8dcc8; /* Aged cream paper */
+  --paper-aged: #d4c4a8; /* More yellowed paper */
+  --paper-dark: #c4b498; /* Shadowed paper */
+  --ink: #1a1410; /* Deep brown-black ink */
+  --ink-red: #8b2500; /* Blood red ink */
+  --ink-faded: #5a4a3a; /* Faded ink */
+  --wax: #6b1a00; /* Darker sealing wax */
+  --brass: #9a7209; /* Tarnished brass */
+  --leather: #2a1d14; /* Dark leather */
+  --candle: #d4a574; /* Candlelight glow */
   
-  /* Chart placeholders */
-  --chart-1: #b3112b;
-  --chart-2: #7a7283;
-  --chart-3: #1f1a26;
-  --chart-4: #ff2c4b;
-  --chart-5: #0a0a0f;
+  /* Chart colors */
+  --chart-1: #8b2500;
+  --chart-2: #9a7209;
+  --chart-3: #2a1d14;
+  --chart-4: #d4a574;
+  --chart-5: #1a1310;
 
-  --sidebar: #121018;
-  --sidebar-foreground: #f5f1eb;
-  --sidebar-primary: #b3112b;
-  --sidebar-primary-foreground: #f5f1eb;
-  --sidebar-accent: #1f1a26;
-  --sidebar-accent-foreground: #f5f1eb;
-  --sidebar-border: #1f1a26;
-  --sidebar-ring: #ff2c4b;
+  --sidebar: #1a1310;
+  --sidebar-foreground: #e8dcc8;
+  --sidebar-primary: #8b2500;
+  --sidebar-primary-foreground: #e8dcc8;
+  --sidebar-accent: #2a1d14;
+  --sidebar-accent-foreground: #e8dcc8;
+  --sidebar-border: #3d2b1f;
+  --sidebar-ring: #8b2500;
 }
 
 .dark {
-  /* Same as root since we want dark mode by default */
-  --background: #0a0a0f;
-  --foreground: #f5f1eb;
-  --card: #121018;
-  --card-foreground: #f5f1eb;
-  --popover: #121018;
-  --popover-foreground: #f5f1eb;
-  --primary: #b3112b;
-  --primary-foreground: #f5f1eb;
-  --secondary: #1f1a26;
-  --secondary-foreground: #f5f1eb;
-  --muted: #121018;
-  --muted-foreground: #a39ba8;
-  --accent: #1f1a26;
-  --accent-foreground: #f5f1eb;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #f5f1eb;
-  --border: #1f1a26;
-  --input: #1f1a26;
-  --ring: #ff2c4b;
-  --sidebar: #121018;
-  --sidebar-foreground: #f5f1eb;
-  --sidebar-primary: #b3112b;
-  --sidebar-primary-foreground: #f5f1eb;
-  --sidebar-accent: #1f1a26;
-  --sidebar-accent-foreground: #f5f1eb;
-  --sidebar-border: #1f1a26;
-  --sidebar-ring: #ff2c4b;
+  /* Same as root - Mysterious Scholar's Desk theme */
+  --background: #1a1310;
+  --foreground: #1a1410;
+  --card: #e8dcc8;
+  --card-foreground: #1a1410;
+  --popover: #e8dcc8;
+  --popover-foreground: #1a1410;
+  --primary: #8b2500;
+  --primary-foreground: #e8dcc8;
+  --secondary: #d4c4a8;
+  --secondary-foreground: #1a1410;
+  --muted: #c4b498;
+  --muted-foreground: #5a4a3a;
+  --accent: #6b1a00;
+  --accent-foreground: #e8dcc8;
+  --destructive: #6b1a00;
+  --destructive-foreground: #e8dcc8;
+  --border: #a89878;
+  --input: #d4c4a8;
+  --ring: #8b2500;
+  --sidebar: #1a1310;
+  --sidebar-foreground: #e8dcc8;
+  --sidebar-primary: #8b2500;
+  --sidebar-primary-foreground: #e8dcc8;
+  --sidebar-accent: #2a1d14;
+  --sidebar-accent-foreground: #e8dcc8;
+  --sidebar-border: #3d2b1f;
+  --sidebar-ring: #8b2500;
 }
 
 @theme inline {
@@ -125,48 +154,203 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* Preserved Custom mappings */
-  --color-surface: var(--surface);
-  --color-glow: var(--glow);
-  --font-sans: var(--font-gothic-sans);
-  --font-serif: var(--font-gothic-serif);
+  /* Mysterious Desk custom colors */
+  --color-desk: var(--desk);
+  --color-desk-mid: var(--desk-mid);
+  --color-desk-light: var(--desk-light);
+  --color-paper: var(--paper);
+  --color-paper-aged: var(--paper-aged);
+  --color-paper-dark: var(--paper-dark);
+  --color-ink: var(--ink);
+  --color-ink-red: var(--ink-red);
+  --color-ink-faded: var(--ink-faded);
+  --color-wax: var(--wax);
+  --color-brass: var(--brass);
+  --color-leather: var(--leather);
+  --color-candle: var(--candle);
+  
+  /* Typography */
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-script: var(--font-script);
 }
 
 /* Base Styles */
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--background);
+  background-color: var(--desk);
+  /* Dark mysterious desk with candlelight glow */
   background-image: 
-    radial-gradient(circle at 20% 20%, rgba(179, 17, 43, 0.08), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(80, 67, 110, 0.08), transparent 25%);
-  color: var(--foreground);
-  font-family: var(--font-gothic-sans), system-ui, -apple-system, sans-serif;
+    /* Subtle wood grain - darker */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.15) 3px,
+      rgba(0, 0, 0, 0.15) 4px
+    ),
+    /* Candlelight glow from top-left */
+    radial-gradient(ellipse at 15% 5%, rgba(212, 165, 116, 0.15), transparent 40%),
+    /* Secondary warm glow */
+    radial-gradient(ellipse at 85% 15%, rgba(139, 37, 0, 0.08), transparent 35%),
+    /* Deep shadows at edges */
+    radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.4), transparent 70%),
+    radial-gradient(ellipse at 100% 50%, rgba(0, 0, 0, 0.3), transparent 50%);
+  color: var(--ink);
+  font-family: var(--font-body), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display), ui-serif, Georgia, serif;
+  font-weight: 700;
+}
+
+/* Script font utility */
+.font-script {
+  font-family: var(--font-script), cursive;
 }
 
 /* Custom Utilities */
 @layer utilities {
-  .glass {
-    background: rgba(18, 16, 24, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+  /* Paper document styling - aged look */
+  .paper {
+    background: linear-gradient(
+      145deg,
+      var(--paper) 0%,
+      var(--paper-aged) 50%,
+      var(--paper-dark) 100%
+    );
+    color: var(--ink);
     box-shadow:
-      0 20px 60px rgba(0, 0, 0, 0.45),
-      0 0 40px rgba(179, 17, 43, 0.12);
+      2px 3px 10px rgba(0, 0, 0, 0.35),
+      4px 6px 25px rgba(0, 0, 0, 0.25),
+      inset 0 0 40px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Heavily aged/stained paper */
+  .paper-aged {
+    background: linear-gradient(
+      160deg,
+      var(--paper-aged) 0%,
+      var(--paper-dark) 60%,
+      var(--paper-aged) 100%
+    );
+    color: var(--ink);
+    box-shadow:
+      2px 3px 12px rgba(0, 0, 0, 0.4),
+      4px 6px 30px rgba(0, 0, 0, 0.3),
+      inset 0 0 50px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Paper texture overlay - darker */
+  .paper-texture {
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23paper)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  /* Red ink text */
+  .text-red-ink {
+    color: var(--ink-red);
+  }
+
+  /* Faded ink text */
+  .text-faded-ink {
+    color: var(--ink-faded);
+  }
+
+  /* Cork board texture - darker */
+  .cork {
+    background-color: var(--cork);
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cfilter id='cork'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.15' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23cork)' opacity='0.15'/%3E%3C/svg%3E");
+    box-shadow: inset 0 2px 10px rgba(26, 20, 16, 0.3);
+  }
+
+  /* Leather texture for book spines */
+  .leather {
+    background: var(--leather);
+    background-image: 
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(0, 0, 0, 0.1) 1px,
+        rgba(0, 0, 0, 0.1) 2px
+      );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Glass - darker overlays */
+  .glass {
+    background: rgba(26, 19, 16, 0.95);
+    border: 1px solid rgba(60, 45, 35, 0.4);
+    box-shadow:
+      0 20px 60px rgba(0, 0, 0, 0.6),
+      0 0 40px rgba(139, 37, 0, 0.05);
     backdrop-filter: blur(12px);
   }
 
+  /* Grain overlay - darker, moodier */
   .grain {
     pointer-events: none;
     position: fixed;
     inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E");
-    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
     z-index: 50;
   }
 
+  /* Document shadow for scattered papers */
+  .document-shadow {
+    box-shadow:
+      1px 2px 4px rgba(26, 20, 16, 0.2),
+      3px 5px 12px rgba(26, 20, 16, 0.15),
+      6px 10px 24px rgba(26, 20, 16, 0.1);
+  }
+
+  /* Brass/gold text effect */
+  .text-brass {
+    color: var(--brass);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  /* Wax seal styling */
+  .wax-seal {
+    background: radial-gradient(circle at 30% 30%, #a83200, var(--wax) 50%, #6b1a00);
+    box-shadow:
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+      2px 3px 8px rgba(26, 20, 16, 0.4);
+  }
+
+  /* Drop cap for first letter */
+  .drop-cap::first-letter {
+    float: left;
+    font-family: var(--font-display), serif;
+    font-size: 3.5em;
+    line-height: 0.8;
+    padding-right: 0.1em;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
   .soft-border {
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border);
+  }
+
+  .overflow-wrap-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 

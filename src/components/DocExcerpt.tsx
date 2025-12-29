@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, ChevronDown } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Excerpt } from "@/lib/portfolio";
 
@@ -25,7 +23,7 @@ function renderMarkdown(content: string): React.ReactNode {
     if (currentParagraph.length > 0) {
       const text = currentParagraph.join(" ");
       elements.push(
-        <p key={elements.length} className="text-foreground/80 leading-relaxed">
+        <p key={elements.length} className="leading-relaxed" style={{ color: "#1a1410" }}>
           {renderInlineFormatting(text)}
         </p>
       );
@@ -38,11 +36,15 @@ function renderMarkdown(content: string): React.ReactNode {
       elements.push(
         <ul
           key={elements.length}
-          className="space-y-1 text-sm text-muted-foreground ml-4"
+          className="space-y-1 text-sm ml-4"
+          style={{ color: "#5a4a3a" }}
         >
           {listItems.map((item, i) => (
             <li key={i} className="flex items-start gap-2">
-              <span className="mt-1.5 block h-1.5 w-1.5 rounded-full bg-primary/70 shrink-0" />
+              <span 
+                className="mt-1.5 block h-1.5 w-1.5 rounded-full shrink-0" 
+                style={{ background: "#8b2500" }}
+              />
               {renderInlineFormatting(item)}
             </li>
           ))}
@@ -63,7 +65,8 @@ function renderMarkdown(content: string): React.ReactNode {
       elements.push(
         <h3
           key={elements.length}
-          className="text-lg font-bold mt-4 mb-2 first:mt-0"
+          className="text-lg font-display font-bold mt-4 mb-2 first:mt-0"
+          style={{ color: "#8b2500" }}
         >
           {trimmed.slice(3)}
         </h3>
@@ -77,7 +80,8 @@ function renderMarkdown(content: string): React.ReactNode {
       elements.push(
         <h4
           key={elements.length}
-          className="text-base font-semibold mt-3 mb-1 first:mt-0"
+          className="text-base font-display font-semibold mt-3 mb-1 first:mt-0"
+          style={{ color: "#1a1410" }}
         >
           {trimmed.slice(4)}
         </h4>
@@ -115,7 +119,6 @@ function renderMarkdown(content: string): React.ReactNode {
 
 // Render inline formatting (bold, italic, code)
 function renderInlineFormatting(text: string): React.ReactNode {
-  // Simple regex-based inline formatting
   const parts: React.ReactNode[] = [];
   let remaining = text;
   let key = 0;
@@ -128,7 +131,7 @@ function renderInlineFormatting(text: string): React.ReactNode {
         parts.push(remaining.slice(0, boldMatch.index));
       }
       parts.push(
-        <strong key={key++} className="font-semibold text-foreground">
+        <strong key={key++} className="font-semibold" style={{ color: "#1a1410" }}>
           {boldMatch[1]}
         </strong>
       );
@@ -145,7 +148,11 @@ function renderInlineFormatting(text: string): React.ReactNode {
       parts.push(
         <code
           key={key++}
-          className="px-1.5 py-0.5 rounded bg-surface text-primary text-sm font-mono"
+          className="px-1.5 py-0.5 text-sm font-mono"
+          style={{ 
+            background: "rgba(196, 180, 152, 0.5)", 
+            color: "#8b2500" 
+          }}
         >
           {codeMatch[1]}
         </code>
@@ -183,29 +190,54 @@ export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) 
     : excerpt.content;
 
   return (
-    <Card className="border-white/5 bg-surface/30 rounded-2xl overflow-hidden">
-      <CardHeader className="pb-3">
+    <div 
+      className="overflow-hidden"
+      style={{
+        background: `linear-gradient(
+          150deg,
+          #e8dcc8 0%,
+          #d4c4a8 50%,
+          #c4b498 100%
+        )`,
+        boxShadow: `
+          2px 3px 10px rgba(0, 0, 0, 0.25),
+          4px 6px 20px rgba(0, 0, 0, 0.15)
+        `,
+      }}
+    >
+      {/* Header */}
+      <div 
+        className="p-4 pb-3"
+        style={{ borderBottom: "1px solid rgba(26, 20, 16, 0.1)" }}
+      >
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <FileText className="w-4 h-4 text-primary" />
+            <div 
+              className="p-2"
+              style={{ background: "rgba(139, 37, 0, 0.1)" }}
+            >
+              <FileText className="w-4 h-4" style={{ color: "#8b2500" }} />
             </div>
             <div>
-              <CardTitle className="text-base font-bold">
+              <h4 className="text-base font-display font-bold" style={{ color: "#1a1410" }}>
                 {excerpt.title}
-              </CardTitle>
-              <Badge
-                variant="outline"
-                className="mt-1 text-xs border-white/10 text-muted-foreground"
+              </h4>
+              <span 
+                className="mt-1 text-xs px-2 py-0.5 inline-block"
+                style={{ 
+                  border: "1px solid rgba(26, 20, 16, 0.2)",
+                  color: "#5a4a3a" 
+                }}
               >
                 {typeLabel}
-              </Badge>
+              </span>
             </div>
           </div>
         </div>
-      </CardHeader>
+      </div>
 
-      <CardContent className="pt-0">
+      {/* Content */}
+      <div className="p-4 pt-3">
         <AnimatePresence mode="wait">
           {isExpanded ? (
             <motion.div
@@ -219,7 +251,8 @@ export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) 
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="mt-4 text-muted-foreground hover:text-foreground"
+                  className="mt-4 hover:bg-transparent"
+                  style={{ color: "#5a4a3a" }}
                   onClick={() => setIsExpanded(false)}
                 >
                   <ChevronDown className="w-4 h-4 mr-1 rotate-180" />
@@ -234,14 +267,15 @@ export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) 
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <p className="text-sm text-foreground/70 leading-relaxed">
+              <p className="text-sm leading-relaxed" style={{ color: "#5a4a3a" }}>
                 {previewContent}
               </p>
               {isLong && (
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="mt-2 text-primary hover:text-primary/80"
+                  className="mt-2 hover:bg-transparent"
+                  style={{ color: "#8b2500" }}
                   onClick={() => setIsExpanded(true)}
                 >
                   <ChevronDown className="w-4 h-4 mr-1" />
@@ -251,8 +285,7 @@ export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) 
             </motion.div>
           )}
         </AnimatePresence>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
-

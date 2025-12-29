@@ -1,0 +1,27 @@
+Opening line - 
+IRON BEAR
+”Given that Silas is one of your clients, you may be able to help me. Arsenal is the premier weapons manufacturer in England. My people have the numbers, the resources and the will to defeat the Republic of Texas Rangers. We lack only the right weapons."
+
+Next line (no choice yet) - 
+INTUITION
+Though his manner remains polite, the chill is palpable as Iron Bear finally takes a single long swallow of his whiskey.
+
+Next line (no choice yet) - 
+IRON BEAR
+“I know that I am asking you to interfere in Silas' business. People who get in that particular Cyclops' way... Well, it's dangerous to one's health."
+
+1 - Player choice - Refuse to help
+PLAYER (CLARA REED]
+“I'm afraid that's not the kind of trouble I can afford. “
+IRON BEAR
+"I understand, of course. And I trust this conversation will remain between us.” [END] 
+
+2 - Player choice - Agree to help
+"If I'm in a position to help you, then I will. But what exactly are you proposing?"
+IRON BEAR
+"I have it from a reliable source that Silas has developed a prototype for a steam-powered repeating-rifle. The real reason I've come to Europe is to arrange a shipment of rifles for the Comanche, but first I need the diagrams of this particular prototype."
+CLARA REED
+"Have you any idea where one might find these diagrams?"
+IRON BEAR
+“Let’s not discuss it now. I fear we are being observed. Meet me here this evening. I have an appointment with an Arsenal employee who might help me locate the diagrams. It'll be helpful if you join our conversation."
+[END] 

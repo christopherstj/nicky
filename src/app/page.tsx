@@ -1,104 +1,159 @@
 import Hero from "@/components/Hero";
 import NoiseOverlay from "@/components/NoiseOverlay";
-import SectionHeading from "@/components/SectionHeading";
 import CaseStudy from "@/components/CaseStudy";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import TopNav from "@/components/TopNav";
+import LetterCard from "@/components/LetterCard";
+import IndexCard from "@/components/IndexCard";
+import WaxSeal from "@/components/WaxSeal";
+import Flourish from "@/components/Flourish";
 import {
   loadAllProjectsWithContent,
   loadPortfolioData,
 } from "@/lib/portfolio";
+
 export default function Home() {
   // Load portfolio content
   const portfolioData = loadPortfolioData();
   const projectsWithContent = loadAllProjectsWithContent();
+  
+  // Prepare external resources for each project (Google Docs links)
+  const getMarkdownResources = (projectId: string) => {
+    const resources = [];
+    
+    if (projectId === "sovereign-syndicate") {
+      resources.push({
+        title: "Period Research: Notes & Inspiration",
+        url: "https://docs.google.com/document/d/1J1elDSySZbTRgqrxDvFHPC-MTUISl0YoFgBRDm9bLNk/edit?tab=t.0",
+        iconName: "FileText",
+      });
+      resources.push({
+        title: "Lore: Silas, Arsenal Engines & the Sons of Caruso",
+        url: "https://docs.google.com/document/d/1FACtrJausk4Gz0TfQKOXOEdBx5j07rzobqW_NvxGxr4/edit?tab=t.0#heading=h.4zifuujagqg6",
+        iconName: "BookOpen",
+      });
+      resources.push({
+        title: "NPC Design: Molly of the Hounds",
+        url: "https://docs.google.com/document/d/1g_7OIbd7x3jUoWNqrkn9Ob9LedbfSJgfS1SFaGGdumw/edit?tab=t.0#heading=h.8kzhmbt27rm",
+        iconName: "Users",
+      });
+    }
+    
+    return resources;
+  };
+  
+  // Skill card rotations for messy scatter
+  const skillRotations = [-3, 2.5, -1.5, 3, -2, 1.5, -3.5, 2.8];
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen">
       <NoiseOverlay />
-      <main className="relative z-10 mx-auto flex max-w-6xl flex-col gap-16 px-4 pb-20 pt-10 sm:px-8">
+      <TopNav />
+      
+      <main className="relative z-10 mx-auto flex max-w-5xl flex-col gap-20 px-4 pb-24 pt-6 sm:px-8">
         <Hero />
 
-        {/* About Section */}
-        <section id="about" className="space-y-6">
-          <SectionHeading
-            eyebrow="About"
-            title="Nicholas Popkey"
-            kicker="Award-winning narrative director crafting branching stories, systems-driven quests, and character arcs that respond to player agency."
-          />
-          <Card className="glass border-white/5 bg-transparent rounded-3xl">
-            <CardContent className="p-6 sm:p-8 space-y-6">
-              <p className="text-lg leading-relaxed text-foreground/90">
-                With a passion for story-driven narrative games, I&apos;ve been directing the story and narrative structure of sprawling RPGs since 2020. My background in the LA Film industry supports my ability to craft compelling and cinematic games.
+        {/* About Section - Personal Letter */}
+        <section id="about" className="scroll-mt-24 pt-8">
+          <div className="max-w-2xl mx-auto">
+            <LetterCard rotation={-1.5} showSeal={true} sealInitial="N">
+              <p className="text-base leading-relaxed drop-cap">
+                With a passion for story-driven narrative games, I&apos;ve been directing the story and narrative structure of sprawling RPGs since 2020. My background in the LA film industry supports my ability to craft compelling and cinematic games—strong scene craft, deliberate pacing, and distinctive character voice.
               </p>
               
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="space-y-3">
-                  <h4 className="text-sm uppercase tracking-wider text-primary/80 font-semibold">Experience</h4>
-                  <div className="space-y-2 text-sm">
-                    <p className="text-foreground/90">
-                      <span className="font-semibold">Narrative Director</span> at Crimson Herring Studios
-                    </p>
-                    <p className="text-muted-foreground">September 2020 – Present</p>
-                    <ul className="space-y-1 text-muted-foreground">
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 block h-1 w-1 rounded-full bg-primary/70 shrink-0" />
-                        Multi-chapter branching narratives with complex variable management
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="mt-1.5 block h-1 w-1 rounded-full bg-primary/70 shrink-0" />
-                        Onboarding and mentoring writers in narrative pipelines
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div className="space-y-3">
-                  <h4 className="text-sm uppercase tracking-wider text-primary/80 font-semibold">Recognition</h4>
-                  <div className="space-y-2 text-sm">
-                    <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
-                      <p className="font-semibold text-foreground/90">Best Narrative Game Award</p>
-                      <p className="text-muted-foreground text-xs mt-1">
-                        2025 AMPIA Alberta Film and Television Awards (Rosies) — Sovereign Syndicate
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <p className="text-base leading-relaxed">
+                My debut title, <em style={{ color: "#8b2500" }}>Sovereign Syndicate</em>, received strong critical praise for its unique Victorian-steampunk setting, complex writing, and character depth—drawing comparisons to <em>Disco Elysium</em>. Reviewers highlighted its innovative tarot-based skill system and rich world-building.
+              </p>
 
-              <div className="grid gap-4 sm:grid-cols-3 pt-2">
-                <div className="space-y-2">
-                  <h4 className="text-sm uppercase tracking-wider text-primary/80 font-semibold">Education</h4>
-                  <p className="text-sm text-foreground/90">Bachelor of Arts</p>
-                  <p className="text-xs text-muted-foreground">Pitzer College, Claremont</p>
-                  <p className="text-xs text-muted-foreground">Media Studies & Art, 3.7 GPA</p>
-                </div>
-                
-                <div className="space-y-2">
-                  <h4 className="text-sm uppercase tracking-wider text-primary/80 font-semibold">Languages</h4>
-                  <p className="text-sm text-foreground/90">English <span className="text-muted-foreground">(Native)</span></p>
-                  <p className="text-sm text-foreground/90">Spanish <span className="text-muted-foreground">(Fluent)</span></p>
-                  <p className="text-sm text-foreground/90">French <span className="text-muted-foreground">(Conversational)</span></p>
-                </div>
-                
-                <div className="space-y-2">
-                  <h4 className="text-sm uppercase tracking-wider text-primary/80 font-semibold">Location</h4>
-                  <p className="text-sm text-foreground/90">Boise, ID, USA</p>
-                  <p className="text-xs text-muted-foreground">Available for remote work</p>
+              {/* Award highlight */}
+              <div 
+                className="my-6 p-4 relative"
+                style={{ 
+                  background: "rgba(139, 37, 0, 0.08)",
+                  borderLeft: "3px solid #8b2500"
+                }}
+              >
+                <p className="text-sm font-display font-semibold" style={{ color: "#8b2500" }}>
+                  ★ Best Narrative Game Award
+                </p>
+                <p className="text-sm mt-1" style={{ color: "#5a4a3a" }}>
+                  2025 AMPIA Alberta Film and Television Awards (Rosies)
+                </p>
+              </div>
+              
+              <p className="text-base leading-relaxed">
+                I&apos;ve since led narrative direction on <em>Hunter&apos;s Moon</em>—a critically well-received roguelike deck builder praised for its immersive atmosphere and strong voice acting. Currently, I&apos;m building <em style={{ color: "#8b2500" }}>Sovereign Syndicate 2</em>, a party-based CRPG with tactical combat, and developing <em>Studio Delirium</em>, a game about running a studio chasing the next great Disco-like.
+              </p>
+              
+              <div className="mt-6 pt-4 border-t border-ink/10">
+                <p className="text-sm mb-3 font-medium tracking-wide" style={{ color: "#8b2500" }}>Selected titles:</p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span><strong>Sovereign Syndicate</strong> — Narrative Director</span>
+                    <em style={{ color: "#5a4a3a" }}>2024</em>
+                  </div>
+                  <div className="flex justify-between">
+                    <span><strong>Hunter&apos;s Moon</strong> — Narrative Director</span>
+                    <em style={{ color: "#5a4a3a" }}>2025</em>
+                  </div>
+                  <div className="flex justify-between">
+                    <span><strong>Sovereign Syndicate 2</strong> — Narrative Director</span>
+                    <em style={{ color: "#5a4a3a" }}>Coming Soon</em>
+                  </div>
+                  <div className="flex justify-between">
+                    <span><strong>Studio Delirium</strong> — Narrative Director</span>
+                    <em style={{ color: "#5a4a3a" }}>In Development</em>
+                  </div>
                 </div>
               </div>
-            </CardContent>
-          </Card>
+            </LetterCard>
+          </div>
         </section>
 
-        {/* Case Studies Section */}
-        <section id="projects" className="space-y-8">
-          <SectionHeading
-            eyebrow="Case Studies"
-            title="Narrative Direction in Practice"
-            kicker="Click each project to explore dialogue systems, quest architecture, and documentation."
-          />
-          <div className="space-y-6">
+        {/* Skills Section - Scattered Paper Scraps */}
+        <section id="skills" className="scroll-mt-24">
+          {/* Section header - red ink */}
+          <div className="text-center mb-8">
+            <h3 
+              className="font-script text-2xl"
+              style={{ color: "var(--ink-red)" }}
+            >
+              Areas of Expertise
+            </h3>
+          </div>
+          
+          {/* Scattered paper scraps on the desk */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+            {portfolioData.skills.map((skill, index) => (
+              <IndexCard
+                key={skill.name}
+                title={skill.name}
+                description={skill.description}
+                rotation={skillRotations[index % skillRotations.length]}
+                index={index}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Case Studies Section - Scattered Documents */}
+        <section id="projects" className="scroll-mt-24">
+          {/* Section header - red ink */}
+          <div className="text-center mb-10">
+            <Flourish variant="divider" className="max-w-xs mx-auto mb-4 opacity-40" color="var(--ink-red)" />
+            <h2 
+              className="font-display text-3xl sm:text-4xl font-bold mb-2"
+              style={{ color: "var(--paper)" }}
+            >
+              Case Studies
+            </h2>
+            <p className="text-sm max-w-md mx-auto" style={{ color: "var(--paper-dark)" }}>
+              Click each dossier to explore dialogue systems, quest architecture, and documentation.
+            </p>
+            <Flourish variant="divider" className="max-w-xs mx-auto mt-4 opacity-40" color="var(--ink-red)" />
+          </div>
+          
+          {/* Project folders - scattered on desk */}
+          <div className="space-y-8">
             {projectsWithContent.map(
               ({ project, excerpts, dialogueScenes }, index) => (
                 <CaseStudy
@@ -107,75 +162,112 @@ export default function Home() {
                   excerpts={excerpts}
                   dialogueScenes={dialogueScenes}
                   defaultOpen={index === 0}
+                  markdownResources={getMarkdownResources(project.id)}
                 />
               )
             )}
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id="skills" className="space-y-6">
-          <SectionHeading
-            eyebrow="Tools & Process"
-            title="Technical Skills"
-            kicker="The tools and workflows that power narrative-driven game development."
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {portfolioData.skills.map((skill) => (
-              <Card
-                key={skill.name}
-                className="border-white/5 bg-surface/30 rounded-2xl"
+        {/* Contact CTA - Envelope / Telegram Style */}
+        <section id="contact" className="scroll-mt-24">
+          <div className="max-w-xl mx-auto">
+            {/* Envelope - darker aged paper */}
+            <div 
+              className="relative p-8 sm:p-12 text-center"
+              style={{
+                background: `linear-gradient(
+                  160deg,
+                  var(--paper-aged) 0%,
+                  var(--paper-dark) 60%,
+                  var(--paper-aged) 100%
+                )`,
+                clipPath: "polygon(0% 15%, 50% 0%, 100% 15%, 100% 100%, 0% 100%)",
+                boxShadow: `
+                  4px 6px 25px rgba(0, 0, 0, 0.35),
+                  8px 12px 50px rgba(0, 0, 0, 0.25)
+                `,
+              }}
+            >
+              {/* Age stains */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-25"
+                style={{
+                  background: `
+                    radial-gradient(ellipse at 75% 25%, rgba(139, 37, 0, 0.15), transparent 45%),
+                    radial-gradient(ellipse at 25% 75%, rgba(90, 74, 58, 0.2), transparent 55%)
+                  `,
+                }}
+              />
+              
+              {/* Envelope flap shadow */}
+              <div 
+                className="absolute top-0 left-0 right-0 h-24 pointer-events-none"
+                style={{
+                  background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 100%)",
+                }}
+              />
+              
+              {/* Stamp decoration - darker */}
+              <div 
+                className="absolute top-8 right-6 w-12 h-14 rounded-sm opacity-70"
+                style={{
+                  background: "linear-gradient(135deg, #6b1a00 0%, #4a1000 100%)",
+                  border: "2px dashed rgba(232,220,200,0.25)",
+                }}
               >
-                <CardContent className="p-5">
-                  <h4 className="font-bold text-foreground mb-1">
-                    {skill.name}
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    {skill.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact CTA */}
-        <section id="contact" className="space-y-6">
-          <Card className="glass border-white/5 bg-transparent rounded-3xl overflow-hidden">
-            <div className="relative p-8 sm:p-12 text-center">
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(179,17,43,0.15),transparent_50%)] pointer-events-none" />
-              <div className="relative space-y-4">
-                <Badge
-                  variant="outline"
-                  className="border-primary/50 text-primary"
+                <span className="text-[8px] font-display absolute inset-0 flex items-center justify-center" style={{ color: "var(--paper-aged)" }}>
+                  REPLY
+                </span>
+              </div>
+              
+              {/* Content */}
+              <div className="relative pt-8 space-y-4">
+                <span 
+                  className="inline-block px-3 py-1 text-xs font-medium tracking-wider rounded-sm"
+                  style={{ 
+                    color: "var(--ink-red)", 
+                    border: "1px solid var(--ink-red)",
+                    opacity: 0.8
+                  }}
                 >
                   Available for Opportunities
-                </Badge>
-                <h2 className="text-2xl sm:text-3xl font-black">
+                </span>
+                
+                <h2 
+                  className="font-display text-2xl sm:text-3xl font-bold"
+                  style={{ color: "var(--ink-red)" }}
+                >
                   Let&apos;s Build Worlds Together
                 </h2>
-                <p className="text-muted-foreground max-w-xl mx-auto">
+                
+                <p className="max-w-md mx-auto text-sm leading-relaxed" style={{ color: "var(--ink-faded)" }}>
                   Looking for a narrative director who understands both story
                   craft and systems design? Let&apos;s talk about your next
                   project.
                 </p>
-                <div className="flex flex-wrap justify-center gap-3 pt-4">
+                
+                <div className="flex flex-wrap justify-center gap-4 pt-4">
                   <a
                     href="mailto:popkey34@gmail.com"
-                    className="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white shadow-lg shadow-primary/30 transition hover:-translate-y-0.5 hover:shadow-primary/40"
+                    className="group inline-flex items-center gap-3"
                   >
-                    Get in Touch
-                  </a>
-                  <a
-                    href="#projects"
-                    className="inline-flex items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold uppercase tracking-wide text-foreground transition hover:border-primary/60 hover:text-primary"
-                  >
-                    View Work
+                    <WaxSeal size="sm" initial="✉" />
+                    <span 
+                      className="font-display font-semibold transition-colors"
+                      style={{ color: "var(--ink)" }}
+                    >
+                      Send a Letter
+                    </span>
                   </a>
                 </div>
               </div>
+              
+              {/* Corner flourishes */}
+              <Flourish variant="corner-bl" className="absolute bottom-3 left-3 opacity-20" color="var(--ink)" />
+              <Flourish variant="corner-br" className="absolute bottom-3 right-3 opacity-20" color="var(--ink)" />
             </div>
-          </Card>
+          </div>
         </section>
       </main>
     </div>

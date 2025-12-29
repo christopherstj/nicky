@@ -1,18 +1,29 @@
 import type { Metadata } from "next";
-import { Cinzel, Crimson_Text } from "next/font/google";
+import { Playfair_Display, Crimson_Pro, Great_Vibes } from "next/font/google";
 import "./globals.css";
 
-const cinzel = Cinzel({
+// Display font - dramatic headings
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-gothic-sans",
-  weight: ["400", "600", "700", "900"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
-const crimson = Crimson_Text({
+// Body font - refined, readable serif
+const crimsonPro = Crimson_Pro({
   subsets: ["latin"],
-  variable: "--font-gothic-serif",
-  weight: ["400", "600", "700"],
+  variable: "--font-body",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Script font - handwritten flourishes
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  variable: "--font-script",
+  weight: ["400"],
   display: "swap",
 });
 
@@ -29,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${cinzel.variable} ${crimson.variable} antialiased`}>
+      <body className={`${playfair.variable} ${crimsonPro.variable} ${greatVibes.variable} antialiased`}>
         {children}
       </body>
     </html>

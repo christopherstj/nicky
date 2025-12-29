@@ -4,7 +4,7 @@
       "id": "sovereign-syndicate",
       "title": "Sovereign Syndicate",
       "role": "Narrative Director",
-      "studio": "Crimson Herring Studios",
+      "studio": "Crimson Herring",
       "year": "2024",
       "summary": "A Disco Elysium-inspired Victorian steampunk RPG. Hired as Lead Writer, promoted to Narrative Director after securing Canada Media Fund grant. Responsible for branching dialogue across four playable characters, questlines, and overall narrative cohesion.",
       "heroImage": "/SovereignSyndicate/TitleCards/SS_MainCapsule.png",
@@ -16,7 +16,7 @@
         "Tested and integrated dialogue within Unity"
       ],
       "excerpts": ["ss-overview"],
-      "dialogueScenes": ["silver-coin", "bone-mill"],
+      "dialogueScenes": ["iron-bear-proposal"],
       "workflowImages": [],
       "galleryImages": [
         {
@@ -37,7 +37,7 @@
       "id": "studio-delirium",
       "title": "Studio Delirium",
       "role": "Narrative Director",
-      "studio": "Crimson Herring Studios / Zugalu Entertainment",
+      "studio": "Zugalu",
       "year": "In Development",
       "summary": "As the existing Narrative Director at Crimson Herring, introduced to this project by our game producer. Responsible for narrative design, quest architecture, and managing junior writers while building the playable golden path.",
       "heroImage": "/StudioDelirium/Mockups/Mock Up - Rough.png",

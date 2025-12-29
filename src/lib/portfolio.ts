@@ -14,6 +14,7 @@ export type DialogueScene = {
   chapter: number;
   location: string;
   context: string;
+  contextLines?: string[]; // Sequential context dialogs (speaker + text)
   options: DialogueOption[];
 };
 
@@ -66,6 +67,8 @@ export type PortfolioData = {
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const DIALOGUE_DIR = path.join(CONTENT_DIR, "dialogue");
 const EXCERPTS_DIR = path.join(CONTENT_DIR, "excerpts");
+const LORE_DIR = path.join(CONTENT_DIR, "lore");
+const PERIOD_RESEARCH_DIR = path.join(CONTENT_DIR, "period-research");
 
 /**
  * Load the main portfolio.json file
@@ -149,12 +152,20 @@ export function loadDialogueScene(sceneId: string): DialogueScene | null {
 
   // First row has the context
   const firstRow = dataRows[0];
+  const contextField = firstRow[4] || "";
+  
+  // Check if context contains delimiter for sequential context lines
+  const contextLines = contextField.includes("|||") 
+    ? contextField.split("|||").map(line => line.trim()).filter(line => line.length > 0)
+    : undefined;
+  
   const scene: DialogueScene = {
     id: firstRow[0] || sceneId,
     name: firstRow[1] || "",
     chapter: parseInt(firstRow[2]) || 0,
     location: firstRow[3] || "",
-    context: firstRow[4] || "",
+    context: contextLines ? contextLines.join(" ") : contextField, // Keep context for backwards compatibility
+    contextLines,
     options: [],
   };
 
@@ -288,5 +299,31 @@ export function loadAllProjectsWithContent(): Array<{
     excerpts: loadExcerptsForProject(project.excerpts),
     dialogueScenes: loadDialogueScenesForProject(project.dialogueScenes),
   }));
+}
+
+/**
+ * Load a lore markdown file by filename
+ */
+export function loadLoreFile(filename: string): string | null {
+  const filePath = path.join(LORE_DIR, filename);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  return fs.readFileSync(filePath, "utf-8");
+}
+
+/**
+ * Load a period research markdown file by filename
+ */
+export function loadPeriodResearchFile(filename: string): string | null {
+  const filePath = path.join(PERIOD_RESEARCH_DIR, filename);
+
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  return fs.readFileSync(filePath, "utf-8");
 }
 
