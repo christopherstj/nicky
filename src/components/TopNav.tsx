@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import ResumeLightbox from "@/components/ResumeLightbox";
 
@@ -14,11 +14,48 @@ const NAV_LINKS: Array<{ href: string; label: string; color: string }> = [
 export default function TopNav() {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollThreshold = 100; // Start collapsing after scrolling 100px
+      
+      // Only collapse if we've scrolled past the threshold
+      if (currentScrollY > scrollThreshold) {
+        // Scrolling down - collapse
+        if (currentScrollY > lastScrollY.current + 10) {
+          setIsCollapsed(true);
+        }
+        // Scrolling up - expand
+        else if (currentScrollY < lastScrollY.current - 10) {
+          setIsCollapsed(false);
+        }
+      } else {
+        // Near top of page - always show
+        setIsCollapsed(false);
+      }
+      
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       {/* Book shelf navigation */}
-      <nav className="sticky top-0 z-40 py-4">
+      <motion.nav 
+        className="sticky top-0 z-40 py-4"
+        initial={{ y: 0 }}
+        animate={{ 
+          y: isCollapsed ? -120 : 0,
+          opacity: isCollapsed ? 0 : 1,
+        }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      >
         <div className="mx-auto max-w-5xl px-4 sm:px-8">
           {/* Shelf with books */}
           <div className="flex items-end justify-center gap-1">
@@ -170,7 +207,7 @@ export default function TopNav() {
             }}
           />
         </div>
-      </nav>
+      </motion.nav>
 
       <ResumeLightbox open={resumeOpen} onOpenChange={setResumeOpen} />
     </>

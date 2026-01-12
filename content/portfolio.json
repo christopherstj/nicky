@@ -21,15 +21,44 @@
       "galleryImages": [
         {
           "src": "/SovereignSyndicate/LoadScreens/MANOR INT LOAD SCREEN.jpg",
-          "alt": "Manor Interior - Victorian estate setting"
+          "alt": "Manor Interior - Victorian estate setting",
+          "description": "Art by Tarik Boussekine"
         },
         {
           "src": "/SovereignSyndicate/LoadScreens/TAVERN LOAD SCREEN.jpg",
-          "alt": "Tavern - Social hub location"
+          "alt": "Tavern - Social hub location",
+          "description": "Art by Tarik Boussekine"
+        }
+      ]
+    },
+    {
+      "id": "hunters-moon",
+      "title": "Hunter's Moon",
+      "role": "Narrative Director",
+      "studio": "Crimson Herring",
+      "year": "2025",
+      "summary": "A roguelike deck builder set in the Sovereign Syndicate universe, praised for its immersive atmosphere and strong voice acting. Worked with the Creative Director to bring the storyline to fruition and managed narrative deliveries through to launch.",
+      "heroImage": "/HuntersMoon/TitleCards/HM_HeaderImage.jpg",
+      "highlights": [
+        "Collaborated with Creative Director on storyline development",
+        "Planned quests, missions, and interactions",
+        "Wrote dialogue, scene descriptions, and interactions",
+        "Reviewed and revised deliveries from junior writers",
+        "Tested dialogue and gameplay within Unity"
+      ],
+      "excerpts": ["hm-overview"],
+      "dialogueScenes": ["bone-mill"],
+      "workflowImages": [],
+      "galleryImages": [
+        {
+          "src": "/HuntersMoon/Designs/hm-1.jpeg",
+          "alt": "Character Design 1",
+          "description": "Art by Michael Zhang"
         },
         {
-          "src": "/SovereignSyndicate/Mockups/Storyboarding.png",
-          "alt": "Early storyboarding process"
+          "src": "/HuntersMoon/Designs/hm-2.jpeg",
+          "alt": "Character Design 2",
+          "description": "Art by Michael Zhang"
         }
       ]
     },

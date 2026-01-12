@@ -99,6 +99,17 @@ export default function AnnotatedImage({
             style={{ background: "rgba(26, 19, 16, 0.95)" }}
             onClick={() => setIsExpanded(false)}
           >
+            {/* Close button - positioned outside the stopPropagation container */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 hover:bg-paper/10 z-10"
+              style={{ color: "#c4b498" }}
+              onClick={() => setIsExpanded(false)}
+            >
+              <X className="w-6 h-6" />
+            </Button>
+
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -107,16 +118,6 @@ export default function AnnotatedImage({
               className="relative max-w-6xl max-h-[90vh] w-full"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close button */}
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute -top-12 right-0 hover:bg-transparent"
-                style={{ color: "#c4b498" }}
-                onClick={() => setIsExpanded(false)}
-              >
-                <X className="w-6 h-6" />
-              </Button>
 
               {/* Image container - paper style */}
               <div 

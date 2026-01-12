@@ -65,7 +65,7 @@ export default function Hero() {
                 className="font-script text-3xl sm:text-4xl"
                 style={{ color: "var(--ink-faded)" }}
               >
-                The Works of
+                Portfolio
               </motion.p>
               
               <motion.h1
@@ -154,7 +154,7 @@ export default function Hero() {
                 style={{ color: "var(--ink-faded)" }}
               >
                 <span style={{ color: "var(--ink-red)" }}>Gothic, moody, and eminently game-forward</span> — exploring the 
-                intersection of player agency and authored narrative.
+                intersection of player agency and narrative.
               </motion.p>
               
               <motion.div

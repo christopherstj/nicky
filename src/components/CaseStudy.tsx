@@ -61,17 +61,18 @@ export default function CaseStudy({
       >
         {/* Folder tab - darker, aged */}
         <div 
-          className="absolute -top-4 left-8 z-10"
+          className="absolute -top-4 left-8 z-10 px-6"
           style={{
-            width: "180px",
+            minWidth: "180px",
+            width: "auto",
             height: "32px",
             background: "linear-gradient(180deg, #d4c4a8 0%, #c4b498 100%)",
-            clipPath: "polygon(10% 100%, 0% 0%, 100% 0%, 90% 100%)",
+            clipPath: "polygon(8px 100%, 0% 0%, 100% 0%, calc(100% - 8px) 100%)",
             boxShadow: "0 -2px 10px rgba(0,0,0,0.35)",
           }}
         >
           <span 
-            className="absolute inset-0 flex items-center justify-center text-xs font-display font-semibold tracking-wide pt-1"
+            className="h-full flex items-center justify-center text-xs font-display font-semibold tracking-wide whitespace-nowrap"
             style={{ color: "#8b2500" }}
           >
             {project.year} • {project.role}
@@ -331,11 +332,11 @@ export default function CaseStudy({
                       style={{ color: "#8b2500" }}
                     >
                       <Flourish variant="ornament" className="w-5 h-5 opacity-60" color="#8b2500" />
-                      Documentation
+                      {project.title} Overview
                     </h4>
                     <div className="space-y-4">
                       {excerpts.map((excerpt) => (
-                        <DocExcerpt key={excerpt.id} excerpt={excerpt} />
+                        <DocExcerpt key={excerpt.id} excerpt={excerpt} hideTitle />
                       ))}
                     </div>
                   </section>
@@ -351,7 +352,13 @@ export default function CaseStudy({
                       <Flourish variant="ornament" className="w-5 h-5 opacity-60" color="#8b2500" />
                       Gallery
                     </h4>
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className={`grid gap-4 ${
+                      project.galleryImages.length === 1 
+                        ? "grid-cols-1" 
+                        : project.galleryImages.length === 2 
+                          ? "sm:grid-cols-2" 
+                          : "sm:grid-cols-2 lg:grid-cols-3"
+                    }`}>
                       {project.galleryImages.map((image, i) => (
                         <AnnotatedImage
                           key={i}

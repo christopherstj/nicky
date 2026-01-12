@@ -22,19 +22,37 @@ export default function Home() {
     
     if (projectId === "sovereign-syndicate") {
       resources.push({
+        title: "NPC Design: Molly of the Hounds",
+        url: "https://docs.google.com/document/d/1g_7OIbd7x3jUoWNqrkn9Ob9LedbfSJgfS1SFaGGdumw/edit?tab=t.0#heading=h.8kzhmbt27rm",
+        iconName: "Users",
+      });
+      resources.push({
+        title: "Lore: Silas, Arsenal Engines & the Sons of Caruso",
+        url: "https://docs.google.com/document/d/1FACtrJausk4Gz0TfQKOXOEdBx5j07rzobqW_NvxGxr4/edit?tab=t.0",
+        iconName: "BookOpen",
+      });
+      resources.push({
         title: "Period Research: Notes & Inspiration",
         url: "https://docs.google.com/document/d/1J1elDSySZbTRgqrxDvFHPC-MTUISl0YoFgBRDm9bLNk/edit?tab=t.0",
         iconName: "FileText",
       });
+    }
+    
+    if (projectId === "hunters-moon") {
       resources.push({
-        title: "Lore: Silas, Arsenal Engines & the Sons of Caruso",
-        url: "https://docs.google.com/document/d/1FACtrJausk4Gz0TfQKOXOEdBx5j07rzobqW_NvxGxr4/edit?tab=t.0#heading=h.4zifuujagqg6",
-        iconName: "BookOpen",
+        title: "NPC Design: Jack O'Malley",
+        url: "https://docs.google.com/document/d/1PS-drGu4NN4LlcaI4N0eKtJdR0N7AwKD9PYyMOrjn5I/edit?tab=t.0",
+        iconName: "Users",
       });
       resources.push({
-        title: "NPC Design: Molly of the Hounds",
-        url: "https://docs.google.com/document/d/1g_7OIbd7x3jUoWNqrkn9Ob9LedbfSJgfS1SFaGGdumw/edit?tab=t.0#heading=h.8kzhmbt27rm",
-        iconName: "Users",
+        title: "Mission Outlines",
+        url: "https://docs.google.com/document/d/1MRvseTZIXexGXs3QpvQbJb0-DGd37fYF5lAHG4v6MyE/edit?tab=t.0",
+        iconName: "FileText",
+      });
+      resources.push({
+        title: "Design and Gamescript",
+        url: "https://docs.google.com/document/d/1lZfrfTeujo3mKWFNwyaBM1Km7sDDVUe5sGHvBVx179E/edit?tab=t.0#heading=h.2dv30w7lql4",
+        iconName: "FileText",
       });
     }
     
@@ -61,7 +79,7 @@ export default function Home() {
               </p>
               
               <p className="text-base leading-relaxed">
-                My debut title, <em style={{ color: "#8b2500" }}>Sovereign Syndicate</em>, received strong critical praise for its unique Victorian-steampunk setting, complex writing, and character depth—drawing comparisons to <em>Disco Elysium</em>. Reviewers highlighted its innovative tarot-based skill system and rich world-building.
+                My debut title, <a href="https://store.steampowered.com/app/1674920/Sovereign_Syndicate/" target="_blank" rel="noopener noreferrer" style={{ color: "#8b2500", textDecoration: "underline", textDecorationColor: "rgba(139, 37, 0, 0.4)", textUnderlineOffset: "2px" }}><em>Sovereign Syndicate</em></a>, received strong critical praise for its unique Victorian-steampunk setting, complex writing, and character depth—drawing comparisons to <em>Disco Elysium</em>. Reviewers highlighted its innovative tarot-based skill system and rich world-building.
               </p>
 
               {/* Award highlight */}
@@ -207,19 +225,6 @@ export default function Home() {
                   background: "linear-gradient(180deg, rgba(0,0,0,0.15) 0%, transparent 100%)",
                 }}
               />
-              
-              {/* Stamp decoration - darker */}
-              <div 
-                className="absolute top-8 right-6 w-12 h-14 rounded-sm opacity-70"
-                style={{
-                  background: "linear-gradient(135deg, #6b1a00 0%, #4a1000 100%)",
-                  border: "2px dashed rgba(232,220,200,0.25)",
-                }}
-              >
-                <span className="text-[8px] font-display absolute inset-0 flex items-center justify-center" style={{ color: "var(--paper-aged)" }}>
-                  REPLY
-                </span>
-              </div>
               
               {/* Content */}
               <div className="relative pt-8 space-y-4">

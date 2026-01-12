@@ -5,7 +5,9 @@ import path from "path";
 export type DialogueOption = {
   label: string;
   text: string;
+  textLines?: string[]; // Sequential action dialogs (what happens when you choose)
   result: string;
+  resultLines?: string[]; // Sequential result dialogs (consequence)
 };
 
 export type DialogueScene = {
@@ -172,10 +174,25 @@ export function loadDialogueScene(sceneId: string): DialogueScene | null {
   // Collect all options from all rows
   for (const row of dataRows) {
     if (row[5] && row[6]) {
+      const textField = row[6] || "";
+      const resultField = row[7] || "";
+      
+      // Check if text contains delimiter for sequential action lines
+      const textLines = textField.includes("|||") 
+        ? textField.split("|||").map(line => line.trim()).filter(line => line.length > 0)
+        : undefined;
+      
+      // Check if result contains delimiter for sequential result lines
+      const resultLines = resultField.includes("|||") 
+        ? resultField.split("|||").map(line => line.trim()).filter(line => line.length > 0)
+        : undefined;
+      
       scene.options.push({
         label: row[5],
-        text: row[6],
-        result: row[7] || "",
+        text: textLines ? textLines.join(" ") : textField, // Keep text for backwards compatibility
+        textLines,
+        result: resultLines ? resultLines.join(" ") : resultField, // Keep result for backwards compatibility
+        resultLines,
       });
     }
   }

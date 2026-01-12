@@ -10,7 +10,7 @@ type Props = {
   scene: DialogueScene;
 };
 
-type ViewState = "context" | "choice" | "result";
+type ViewState = "context" | "choice" | "action" | "result";
 
 export default function BranchingDialogue({ scene }: Props) {
   const [viewState, setViewState] = useState<ViewState>("context");
@@ -18,6 +18,8 @@ export default function BranchingDialogue({ scene }: Props) {
     null
   );
   const [contextIndex, setContextIndex] = useState(0);
+  const [actionIndex, setActionIndex] = useState(0);
+  const [resultIndex, setResultIndex] = useState(0);
 
   const contextLines = scene.contextLines || [];
   const hasSequentialContext = contextLines.length > 0;
@@ -26,15 +28,33 @@ export default function BranchingDialogue({ scene }: Props) {
     : null;
   const isLastContextLine = hasSequentialContext && contextIndex >= contextLines.length - 1;
 
+  const textLines = selectedOption?.textLines || [];
+  const hasSequentialText = textLines.length > 0;
+  const currentTextLine = hasSequentialText 
+    ? textLines[actionIndex] 
+    : null;
+  const isLastTextLine = hasSequentialText && actionIndex >= textLines.length - 1;
+
+  const resultLines = selectedOption?.resultLines || [];
+  const hasSequentialResults = resultLines.length > 0;
+  const currentResultLine = hasSequentialResults 
+    ? resultLines[resultIndex] 
+    : null;
+  const isLastResultLine = hasSequentialResults && resultIndex >= resultLines.length - 1;
+
   const handleOptionSelect = (option: DialogueOption) => {
     setSelectedOption(option);
-    setViewState("result");
+    setActionIndex(0);
+    setResultIndex(0);
+    setViewState("action");
   };
 
   const handleReset = () => {
     setViewState("context");
     setSelectedOption(null);
     setContextIndex(0);
+    setActionIndex(0);
+    setResultIndex(0);
   };
 
   const handleContinue = () => {
@@ -42,6 +62,20 @@ export default function BranchingDialogue({ scene }: Props) {
       setContextIndex(contextIndex + 1);
     } else {
       setViewState("choice");
+    }
+  };
+
+  const handleActionContinue = () => {
+    if (hasSequentialText && !isLastTextLine) {
+      setActionIndex(actionIndex + 1);
+    } else {
+      setViewState("result");
+    }
+  };
+
+  const handleResultContinue = () => {
+    if (hasSequentialResults && !isLastResultLine) {
+      setResultIndex(resultIndex + 1);
     }
   };
 
@@ -178,7 +212,7 @@ export default function BranchingDialogue({ scene }: Props) {
               className="space-y-3"
             >
               <p className="text-sm mb-4" style={{ color: "#5a4a3a" }}>
-                Select a choice to see the consequence:
+                What do you do?
               </p>
               {scene.options.map((option, index) => (
                 <motion.button
@@ -201,7 +235,7 @@ export default function BranchingDialogue({ scene }: Props) {
                     e.currentTarget.style.borderColor = "rgba(26, 20, 16, 0.15)";
                   }}
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <span 
                       className="shrink-0 w-6 h-6 rounded-full text-sm font-bold flex items-center justify-center transition-colors"
                       style={{ 
@@ -211,31 +245,25 @@ export default function BranchingDialogue({ scene }: Props) {
                     >
                       {index + 1}
                     </span>
-                    <div>
-                      <p className="font-display font-semibold" style={{ color: "#1a1410" }}>
-                        {option.label}
-                      </p>
-                      <p className="text-sm mt-1 leading-relaxed" style={{ color: "#5a4a3a" }}>
-                        {option.text}
-                      </p>
-                    </div>
+                    <p className="font-display font-semibold" style={{ color: "#1a1410" }}>
+                      {option.label}
+                    </p>
                   </div>
                 </motion.button>
               ))}
             </motion.div>
           )}
 
-          {/* Result View */}
-          {viewState === "result" && selectedOption && (
+          {/* Action View - Shows the choice description step by step */}
+          {viewState === "action" && selectedOption && (
             <motion.div
-              key="result"
+              key={`action-${actionIndex}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              {/* Selected choice */}
               <div 
                 className="p-4"
                 style={{ 
@@ -243,17 +271,51 @@ export default function BranchingDialogue({ scene }: Props) {
                   border: "1px solid rgba(139, 37, 0, 0.25)" 
                 }}
               >
-                <p className="text-sm font-display font-semibold mb-2" style={{ color: "#8b2500" }}>
-                  Your Choice
-                </p>
-                <p className="font-semibold" style={{ color: "#1a1410" }}>
-                  {selectedOption.label}
-                </p>
-                <p className="text-sm mt-1" style={{ color: "#5a4a3a" }}>
-                  {selectedOption.text}
-                </p>
+                {actionIndex === 0 && (
+                  <p className="text-sm font-display font-semibold mb-2" style={{ color: "#8b2500" }}>
+                    {selectedOption.label}
+                  </p>
+                )}
+                {hasSequentialText && currentTextLine ? (
+                  <p className="leading-relaxed whitespace-pre-line italic" style={{ color: "#1a1410" }}>
+                    {currentTextLine}
+                  </p>
+                ) : (
+                  <p className="leading-relaxed italic" style={{ color: "#1a1410" }}>
+                    {selectedOption.text}
+                  </p>
+                )}
               </div>
 
+              <button
+                onClick={handleActionContinue}
+                className="w-full py-3 font-display font-medium transition-all"
+                style={{
+                  background: "#8b2500",
+                  color: "#e8dcc8",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#6b1a00";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "#8b2500";
+                }}
+              >
+                Continue
+              </button>
+            </motion.div>
+          )}
+
+          {/* Result View */}
+          {viewState === "result" && selectedOption && (
+            <motion.div
+              key={`result-${resultIndex}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2 }}
+              className="space-y-4"
+            >
               {/* Consequence */}
               <div 
                 className="p-4"
@@ -262,44 +324,66 @@ export default function BranchingDialogue({ scene }: Props) {
                   border: "1px solid rgba(26, 20, 16, 0.1)" 
                 }}
               >
-                <p className="text-sm font-display font-semibold mb-2" style={{ color: "#5a4a3a" }}>
-                  Consequence
-                </p>
-                <p className="leading-relaxed italic" style={{ color: "#1a1410" }}>
-                  {selectedOption.result}
-                </p>
+                {hasSequentialResults && currentResultLine ? (
+                  <p className="leading-relaxed whitespace-pre-line italic" style={{ color: "#1a1410" }}>
+                    {currentResultLine}
+                  </p>
+                ) : (
+                  <p className="leading-relaxed italic" style={{ color: "#1a1410" }}>
+                    {selectedOption.result}
+                  </p>
+                )}
               </div>
 
-              {/* Try another */}
-              <div className="flex gap-3">
+              {/* Continue or Try another */}
+              {hasSequentialResults && !isLastResultLine ? (
                 <button
-                  onClick={() => setViewState("choice")}
-                  className="flex-1 py-2 font-display font-medium transition-all"
+                  onClick={handleResultContinue}
+                  className="w-full py-3 font-display font-medium transition-all"
                   style={{
-                    border: "1px solid rgba(26, 20, 16, 0.2)",
-                    color: "#1a1410",
-                    background: "transparent",
+                    background: "#8b2500",
+                    color: "#e8dcc8",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(139, 37, 0, 0.4)";
-                    e.currentTarget.style.color = "#8b2500";
+                    e.currentTarget.style.background = "#6b1a00";
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(26, 20, 16, 0.2)";
-                    e.currentTarget.style.color = "#1a1410";
+                    e.currentTarget.style.background = "#8b2500";
                   }}
                 >
-                  Try Another Choice
+                  Continue
                 </button>
-                <Button
-                  variant="ghost"
-                  onClick={handleReset}
-                  className="hover:bg-transparent"
-                  style={{ color: "#5a4a3a" }}
-                >
-                  <RotateCcw className="w-4 h-4" />
-                </Button>
-              </div>
+              ) : (
+                <div className="flex gap-3">
+                  <button
+                    onClick={() => setViewState("choice")}
+                    className="flex-1 py-2 font-display font-medium transition-all"
+                    style={{
+                      border: "1px solid rgba(26, 20, 16, 0.2)",
+                      color: "#1a1410",
+                      background: "transparent",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(139, 37, 0, 0.4)";
+                      e.currentTarget.style.color = "#8b2500";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = "rgba(26, 20, 16, 0.2)";
+                      e.currentTarget.style.color = "#1a1410";
+                    }}
+                  >
+                    Try Another Choice
+                  </button>
+                  <Button
+                    variant="ghost"
+                    onClick={handleReset}
+                    className="hover:bg-transparent"
+                    style={{ color: "#5a4a3a" }}
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                  </Button>
+                </div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>

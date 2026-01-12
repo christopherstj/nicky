@@ -9,6 +9,7 @@ import type { Excerpt } from "@/lib/portfolio";
 type Props = {
   excerpt: Excerpt;
   defaultExpanded?: boolean;
+  hideTitle?: boolean;
 };
 
 // Simple markdown renderer for basic formatting
@@ -117,13 +118,35 @@ function renderMarkdown(content: string): React.ReactNode {
   return <div className="space-y-3">{elements}</div>;
 }
 
-// Render inline formatting (bold, italic, code)
+// Render inline formatting (bold, italic, code, links)
 function renderInlineFormatting(text: string): React.ReactNode {
   const parts: React.ReactNode[] = [];
   let remaining = text;
   let key = 0;
 
   while (remaining.length > 0) {
+    // Links [text](url)
+    const linkMatch = remaining.match(/\[([^\]]+)\]\(([^)]+)\)/);
+    if (linkMatch && linkMatch.index !== undefined) {
+      if (linkMatch.index > 0) {
+        parts.push(remaining.slice(0, linkMatch.index));
+      }
+      parts.push(
+        <a
+          key={key++}
+          href={linkMatch[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium underline underline-offset-2 hover:opacity-80 transition-opacity"
+          style={{ color: "#8b2500", textDecorationColor: "rgba(139, 37, 0, 0.4)" }}
+        >
+          {linkMatch[1]}
+        </a>
+      );
+      remaining = remaining.slice(linkMatch.index + linkMatch[0].length);
+      continue;
+    }
+
     // Bold
     const boldMatch = remaining.match(/\*\*(.+?)\*\*/);
     if (boldMatch && boldMatch.index !== undefined) {
@@ -178,16 +201,40 @@ const typeLabels: Record<string, string> = {
   excerpt: "Documentation",
 };
 
-export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) {
+// Strip markdown syntax for plain text preview
+function stripMarkdown(text: string): string {
+  return text
+    // Remove headers
+    .replace(/^#{1,6}\s+/gm, "")
+    // Remove bold/italic
+    .replace(/\*\*(.+?)\*\*/g, "$1")
+    .replace(/\*(.+?)\*/g, "$1")
+    // Remove links but keep text
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    // Remove inline code
+    .replace(/`(.+?)`/g, "$1")
+    // Remove list markers
+    .replace(/^[-*]\s+/gm, "")
+    // Collapse multiple newlines
+    .replace(/\n{2,}/g, " ")
+    // Collapse single newlines
+    .replace(/\n/g, " ")
+    // Collapse multiple spaces
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+export default function DocExcerpt({ excerpt, defaultExpanded = false, hideTitle = false }: Props) {
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const typeLabel = typeLabels[excerpt.type] || excerpt.type;
 
-  // Truncate content for preview
+  // Truncate content for preview (strip markdown first)
   const previewLength = 300;
+  const plainText = stripMarkdown(excerpt.content);
   const isLong = excerpt.content.length > previewLength;
-  const previewContent = isLong
-    ? excerpt.content.slice(0, previewLength) + "..."
-    : excerpt.content;
+  const previewContent = plainText.length > previewLength
+    ? plainText.slice(0, previewLength) + "..."
+    : plainText;
 
   return (
     <div 
@@ -206,35 +253,37 @@ export default function DocExcerpt({ excerpt, defaultExpanded = false }: Props) 
       }}
     >
       {/* Header */}
-      <div 
-        className="p-4 pb-3"
-        style={{ borderBottom: "1px solid rgba(26, 20, 16, 0.1)" }}
-      >
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div 
-              className="p-2"
-              style={{ background: "rgba(139, 37, 0, 0.1)" }}
-            >
-              <FileText className="w-4 h-4" style={{ color: "#8b2500" }} />
-            </div>
-            <div>
-              <h4 className="text-base font-display font-bold" style={{ color: "#1a1410" }}>
-                {excerpt.title}
-              </h4>
-              <span 
-                className="mt-1 text-xs px-2 py-0.5 inline-block"
-                style={{ 
-                  border: "1px solid rgba(26, 20, 16, 0.2)",
-                  color: "#5a4a3a" 
-                }}
+      {!hideTitle && (
+        <div 
+          className="p-4 pb-3"
+          style={{ borderBottom: "1px solid rgba(26, 20, 16, 0.1)" }}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div 
+                className="p-2"
+                style={{ background: "rgba(139, 37, 0, 0.1)" }}
               >
-                {typeLabel}
-              </span>
+                <FileText className="w-4 h-4" style={{ color: "#8b2500" }} />
+              </div>
+              <div>
+                <h4 className="text-base font-display font-bold" style={{ color: "#1a1410" }}>
+                  {excerpt.title}
+                </h4>
+                <span 
+                  className="mt-1 text-xs px-2 py-0.5 inline-block"
+                  style={{ 
+                    border: "1px solid rgba(26, 20, 16, 0.2)",
+                    color: "#5a4a3a" 
+                  }}
+                >
+                  {typeLabel}
+                </span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Content */}
       <div className="p-4 pt-3">
