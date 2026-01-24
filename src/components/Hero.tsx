@@ -15,15 +15,6 @@ export default function Hero() {
         className="relative mx-auto max-w-5xl"
         style={{ perspective: "1000px" }}
       >
-        {/* Journal binding shadow - darker */}
-        <div 
-          className="absolute left-1/2 top-4 bottom-4 w-5 -translate-x-1/2 z-10"
-          style={{
-            background: "linear-gradient(90deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.4) 100%)",
-            boxShadow: "0 0 30px rgba(0,0,0,0.5)",
-          }}
-        />
-
         <div className="flex flex-col md:flex-row">
           {/* Left Page */}
           <motion.div
