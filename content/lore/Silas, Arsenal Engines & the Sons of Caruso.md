@@ -10,7 +10,7 @@
 
 ## **History of Arsenal Enterprise → Arsenal Engines**
 
-**Prior to SS1**
+**Prior to Sovereign Syndicate**
 
 - In our world, throughout history, cyclopes were involved in blacksmithing, talented metalworkers by nature, resistant to the heat and arduous conditions, able to maintain focus on the red-hot molten point of a blade, without the need for depth of field specific to detailed work that humans and dwarves in particular had a knack for.   
   There were genetic complications that led to disease and early death when breeding cyclopes with one another, so their pure-blooded numbers were scarce, and the single eye being recessive meant that hybrids could pass for another ethnicity, and did well to, due to discrimination and being labelled as disease-ridden ‘monsters’. Commonly sick as children, they were often turned away from medical care by the mainstream community.  
@@ -21,10 +21,6 @@
   He served the interests of his powerhouse nation until the end, when he and Devina died in an explosion that could only have been orchestrated by one of his industro-political rivals, most likely a hate crime against an all too prominent cyclops family. That being said, no one, be it group or individual, ever claimed responsibility. Richard Bragg’s business partners and confidants all agreed it was an outright assassination, although they could not produce a culprit, and after a halfhearted police investigation, the search for evidence became a lost cause.  
   **Silas is the second Lord Bragg \- the hereditary peerage was at first bestowed upon his father, Richard Bragg, for a part he played in discovering Atlantis and bringing its secrets back to England, namely the Atlantians' use of the advanced steam technology.**
 
-
-**Prior to SS2**
-
-- Seeing the Core installation at the end of SS1 as a failure, he’s turned back to an old project to use more of a biological rather than mechanical solution to correct his spine and allow him to walk again. With Arsenal Engines haemorrhaging money, he’s abandoned his responsibilities there and fired his staff and is now hanging in the warehouse acting like a recluse and working on a project.
 
 ## **Silas’s sister’s death** 
 
@@ -113,7 +109,7 @@
 - Similar to the Christian idea of Nephilim  
 - This parallels what is happening with ECLIPSE (also being driven mad) \- (August and Richard finding Atlantis and learning about Chaos, returning with knowledge of Aether.)  
 - He teaches his followers that their souls are what is keeping them from God, and that to truly belong in this world, those souls must be replaced with something of the earth (primal) \[Steampunk Scientology\]  
-- The text found at the Manor is there because the ideas and practices of the Sons had initially worked to Silas’ needs (organs and experimental subjects) but Silas (30-odd years before SS1) went away from their doctrines since they became too extreme. That particular text was about extracting aether, but that doesn’t mean it’s the only text the Sons find sacred, so in SS2 we can safely pivot to the idea of the soul being replaced so as to create beings closer to the *predecessor* beings that were here before Humans. In this sense, the Sons are Antihuman, while Silas and Arsenal are Prohuman.   
+- The text found at the Manor is there because the ideas and practices of the Sons had initially worked to Silas’ needs (organs and experimental subjects) but Silas (30-odd years before the events of Sovereign Syndicate) went away from their doctrines since they became too extreme. That particular text was about extracting aether, but that doesn’t mean it’s the only text the Sons find sacred — their doctrine extends to the soul being replaced so as to create beings closer to the *predecessor* beings that were here before Humans. In this sense, the Sons are Antihuman, while Silas and Arsenal are Prohuman.   
 - Father Franco left the church/orphanage to join the Sons of Caruso, and took this soul concept to a new level, abducting orphans/vagrants and harvesting their organs. While the killings appear to have stopped, they’ve actually just improved the technique, and are now able to perform animal transplants and crude gene therapy.  
   - Clancy’s werewolf elixir is valuable to the SOC. They plan to capture and convert him to their cause but after he’s killed in the Bell Jar by accident, they try to get it from Penny at Bethnal House. Ultimately they are foiled, but it’s not important.  
 - Father Franco is the local leader of this cult, but there are communes all over the world. Perhaps the players have to infiltrate Franco’s commune to see what their society is like? Thinking it might be nice to see some women/children and how they live daily. Regular old hippies (brainwashed)  

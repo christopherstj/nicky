@@ -104,7 +104,7 @@ content/
 │   └── iron-bear-proposal.csv
 ├── excerpts/
 │   ├── ss-overview.md
-│   └── sd-overview.md
+│   └── hm-overview.md
 ├── lore/
 │   └── *.md               # Lore markdown files
 └── period-research/
@@ -192,7 +192,7 @@ Markdown content...
 ## Notes
 - Keep pages static where possible; all content is loaded at build time.
 - When adding new functionality, update this file.
-- Images in `public/` are organized by project (SovereignSyndicate/, StudioDelirium/)
+- Images in `public/` are organized by project (SovereignSyndicate/, HuntersMoon/)
 - Resume PDF is served from `public/resume.pdf` and displayed via `ResumeLightbox`.
 - Typography: avoid forcing all-caps; use weight/spacing for label styling.
 - Use slight rotations (±3°) for organic scattered document feel.
