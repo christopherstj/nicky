@@ -41,13 +41,7 @@ A critically well-received roguelike deck builder with an immersive atmosphere, 
 Articy Draft X
 Google Drive/Microsoft Office
 Adobe Creative Suite
-Studio Delirium, Coming Soon
-Run a game studio chasing the next great Disco-like. Juggle office politics, egos, money, audience expectations, and your own well-being to ship a hit—or fail spectacularly. The choice is yours.
-Narrative Director
 Celtx GEM
-Sovereign Syndicate 2, Coming Soon
-A party-based CRPG with turn based tactical combat set in the Sovereign Syndicate universe after the events of the first game. The player joins a predetermined party of companions to execute a variety of missions towards the game’s conclusion.
-Narrative Director
 Figma
 Unity
 Github

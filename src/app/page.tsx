@@ -99,7 +99,7 @@ export default function Home() {
               </div>
               
               <p className="text-base leading-relaxed">
-                I&apos;ve since led narrative direction on <em>Hunter&apos;s Moon</em>—a critically well-received roguelike deck builder praised for its immersive atmosphere and strong voice acting. Currently, I&apos;m building <em style={{ color: "#8b2500" }}>Sovereign Syndicate 2</em>, a party-based CRPG with tactical combat, and developing <em>Studio Delirium</em>, a game about running a studio chasing the next great Disco-like.
+                I&apos;ve since led narrative direction on <em>Hunter&apos;s Moon</em>—a critically well-received roguelike deck builder praised for its immersive atmosphere and strong voice acting.
               </p>
               
               <div className="mt-6 pt-4 border-t border-ink/10">
@@ -112,14 +112,6 @@ export default function Home() {
                   <div className="flex justify-between">
                     <span><strong>Hunter&apos;s Moon</strong> — Narrative Director</span>
                     <em style={{ color: "#5a4a3a" }}>2025</em>
-                  </div>
-                  <div className="flex justify-between">
-                    <span><strong>Sovereign Syndicate 2</strong> — Narrative Director</span>
-                    <em style={{ color: "#5a4a3a" }}>Coming Soon</em>
-                  </div>
-                  <div className="flex justify-between">
-                    <span><strong>Studio Delirium</strong> — Narrative Director</span>
-                    <em style={{ color: "#5a4a3a" }}>In Development</em>
                   </div>
                 </div>
               </div>
